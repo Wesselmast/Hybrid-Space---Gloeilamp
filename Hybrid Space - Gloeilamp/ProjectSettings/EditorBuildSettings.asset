@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Hologram/MainHologramtestyo.unity
+    guid: 467c220bc351f22468b4eb11c7d2817d
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Hologram/Hologram.unity
+    guid: eef4f0cde0b5da44d824926358bc1096
   m_configObjects: {}

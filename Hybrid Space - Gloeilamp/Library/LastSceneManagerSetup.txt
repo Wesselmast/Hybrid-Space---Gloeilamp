@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/CharonTheFerryman/Ferryman.unity
+- path: Assets/Hologram/Hologram.unity
   isLoaded: 1
   isActive: 1
