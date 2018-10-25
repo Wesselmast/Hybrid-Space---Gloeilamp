@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Hologram/Hologram.unity
+- path: Assets/Hologram/MainHologramtestyo.unity
   isLoaded: 1
   isActive: 1
