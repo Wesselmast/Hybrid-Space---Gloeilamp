@@ -4,7 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - ground
+=======
+  - Leg
+  - SnapCube
+  - Arm
+  - SnapCylinder
+  - Saucers
+  - ExcludeTeleport
+  - Torso
+  - Head
+  - Peddle
+  - TeleportIgnore
+  - PeddleRight
+  - PeddleLeft
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
