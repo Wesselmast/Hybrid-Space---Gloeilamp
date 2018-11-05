@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CharonTheFerryman/Ferryman.unity
     guid: 5828a486239a7844dbe1770dc74f3feb
+  - enabled: 1
+    path: Assets/Hologram/MainHologramtestyo.unity
+    guid: 467c220bc351f22468b4eb11c7d2817d
+  - enabled: 1
+    path: Assets/Hologram/Hologram.unity
+    guid: eef4f0cde0b5da44d824926358bc1096
   m_configObjects: {}
