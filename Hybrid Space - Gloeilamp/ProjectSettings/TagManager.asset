@@ -4,22 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< Updated upstream
-  - ground
-=======
-  - Leg
-  - SnapCube
-  - Arm
-  - SnapCylinder
-  - Saucers
-  - ExcludeTeleport
-  - Torso
-  - Head
-  - Peddle
-  - TeleportIgnore
   - PeddleRight
+  - Peddle
   - PeddleLeft
->>>>>>> Stashed changes
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -29,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
+  - Player 2 (Hologram)
+  - Player 1 (VR)
   - 
   - 
   - 
