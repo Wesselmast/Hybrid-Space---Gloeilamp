@@ -6,10 +6,8 @@ public class BoatController : MonoBehaviour {
 
     [SerializeField]
     private float speed;
-
     [SerializeField]
     private float damping = 10f;
-
     [SerializeField]
     private float rotSpeed = 90f;
 
