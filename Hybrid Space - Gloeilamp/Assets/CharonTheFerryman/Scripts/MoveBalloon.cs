@@ -8,9 +8,9 @@ public class MoveBalloon : MonoBehaviour {
     private ArduinoCom com;
 
     [SerializeField]
-    private float speed, burnerPower = 1f;
+    private float speed = 1f;
     [SerializeField]
-    private float selfRightingOffset = 1f;
+    private float burnerPower = 1f;
     [SerializeField]
     private GameObject lantern, firePlaceholder;
     [SerializeField]
@@ -19,6 +19,8 @@ public class MoveBalloon : MonoBehaviour {
     private float damping = 10f;
     [SerializeField]
     private float rotSpeed = 90f;
+    [SerializeField]
+    private float selfRightingOffset = 1f;
 
     private Rigidbody rb;
     private bool burner, dropLantern = false;
@@ -43,8 +45,7 @@ public class MoveBalloon : MonoBehaviour {
         //player input stuff
         Abilities();
         //self-righting stuff
-        Vector3 point = transform.TransformPoint(Vector3.up * selfRightingOffset);
-        rb.AddForceAtPosition(Vector3.down, point);
+        rb.AddForceAtPosition(Vector3.down, transform.TransformPoint(Vector3.up * selfRightingOffset));
         //custom gravity because baloons
         rb.AddForce(Vector3.down * 0.1f, ForceMode.Acceleration);
     }
