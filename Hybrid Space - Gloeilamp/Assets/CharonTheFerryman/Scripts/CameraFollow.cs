@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
     [SerializeField]
-    private Transform player;
-    private Vector3 targetPos, thisPos;
+    private Transform target;
+    private Vector3 targetPos, targetRot, thisPos, thisRot;
 
     void Start() {
-        targetPos = player.position;
+        targetPos = target.position;
+        targetRot = target.eulerAngles;
         thisPos = transform.position;
+        thisRot = transform.eulerAngles;
     }
 
     private void FixedUpdate() {
-        transform.position = thisPos + player.position - targetPos;
+        transform.position = thisPos + target.position - targetPos;
+        transform.eulerAngles = thisRot + target.eulerAngles - targetRot;
     }
 }

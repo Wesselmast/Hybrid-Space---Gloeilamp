@@ -5,22 +5,30 @@ using UnityEngine;
 public class MoveBalloon : MonoBehaviour {
 
     [SerializeField]
-    private ArduinoCom com;
-
-    [SerializeField]
-    private float speed = 1f;
-    [SerializeField]
-    private float burnerPower = 1f;
-    [SerializeField]
-    private GameObject lantern, firePlaceholder;
-    [SerializeField]
-    private float startTimer;
-    [SerializeField]
+    [Header("Movement")]
     private float damping = 10f;
     [SerializeField]
     private float rotSpeed = 90f;
     [SerializeField]
     private float selfRightingOffset = 1f;
+    [SerializeField]
+    private float speed = 1f;
+    [SerializeField]
+    private float burnerPower = 1f;
+    [SerializeField][Range(0,5)]
+    private float balloonGravity = 0.1f;
+
+    [Header("Misc")]
+    [SerializeField]
+    private Transform dropSpot;
+    [SerializeField]
+    private ArduinoCom com;
+    [SerializeField]
+    private GameObject lantern;
+    [SerializeField]
+    private GameObject firePlaceholder;
+    [SerializeField]
+    private float startTimer;
 
     private Rigidbody rb;
     private bool burner, dropLantern = false;
@@ -34,7 +42,7 @@ public class MoveBalloon : MonoBehaviour {
 
     void Update() {
         if (Input.GetKey(KeyCode.Space)) burner = true;
-        if (Input.GetKey(KeyCode.L) && timer <= 0) dropLantern = true;
+        if (Input.GetKey(KeyCode.B) && timer <= 0) dropLantern = true;
     }
 
     private void FixedUpdate() {
@@ -47,7 +55,7 @@ public class MoveBalloon : MonoBehaviour {
         //self-righting stuff
         rb.AddForceAtPosition(Vector3.down, transform.TransformPoint(Vector3.up * selfRightingOffset));
         //custom gravity because baloons
-        rb.AddForce(Vector3.down * 0.1f, ForceMode.Acceleration);
+        rb.AddForce(Vector3.down * balloonGravity, ForceMode.Acceleration);
     }
 
     void Rotation() {
@@ -60,13 +68,13 @@ public class MoveBalloon : MonoBehaviour {
     void Abilities() {
         if (burner) {
             //remove - from transforms once model is correct!!! (not 180 flip)
-            if (rb.velocity.y < 0) rb.AddForce(-transform.up * (1.8f * burnerPower), ForceMode.Acceleration);
+            if (rb.velocity.y < 0) rb.AddForce(-transform.up * (1.4f * burnerPower), ForceMode.Acceleration);
             else rb.AddForce(-transform.up * (0.8f * burnerPower), ForceMode.Acceleration);
             firePlaceholder.SetActive(true);
             burner = false;
         }
         if (dropLantern) {
-            Instantiate(lantern, new Vector3(transform.position.x, transform.position.y - 4.5f, transform.position.z), Quaternion.identity);
+            Instantiate(lantern, dropSpot.position, Quaternion.identity);
             timer = startTimer;
             dropLantern = false;
         }

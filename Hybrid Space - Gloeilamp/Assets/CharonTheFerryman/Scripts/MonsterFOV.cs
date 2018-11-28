@@ -21,6 +21,7 @@ public class MonsterFOV : MonoBehaviour {
             Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2) {
                 float dist = Vector3.Distance(transform.position, target.transform.position);
+                //if the target is behind something, dont include it
                 if (!Physics.Raycast(transform.position, dirToTarget, dist, obstacleMask)) {
                     visibleTargets.Add(target.transform);
                 }
@@ -30,8 +31,6 @@ public class MonsterFOV : MonoBehaviour {
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
         if (!angleIsGlobal) angleInDegrees += transform.eulerAngles.y;
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad),
-                           0,
-                           Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
