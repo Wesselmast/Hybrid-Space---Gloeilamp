@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveBalloon : MonoBehaviour
-{
+public class MoveBalloon : MonoBehaviour {
 
     [SerializeField]
     [Header("Movement")]
@@ -16,8 +15,7 @@ public class MoveBalloon : MonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private float burnerPower = 1f;
-    [SerializeField]
-    [Range(0, 5)]
+    [SerializeField][Range(0,5)]
     private float balloonGravity = 0.1f;
 
     [Header("Misc")]
@@ -37,20 +35,17 @@ public class MoveBalloon : MonoBehaviour
     private float timer;
     private float desiredRot;
 
-    private void Start()
-    {
+    private void Start() {
         rb = GetComponent<Rigidbody>();
         desiredRot = transform.eulerAngles.y;
     }
 
-    void Update()
-    {
-        if (com.up || !com.isActiveAndEnabled && Input.GetKey(KeyCode.Space)) burner = true;
-        if ((com.barrels || !com.isActiveAndEnabled && Input.GetKey(KeyCode.B)) && timer <= 0) dropLantern = true;
+    void Update() {
+        if (Input.GetKey(KeyCode.Space)) burner = true;
+        if (Input.GetKey(KeyCode.B) && timer <= 0) dropLantern = true;
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         //move forward
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
         //calculate rotation
@@ -63,30 +58,26 @@ public class MoveBalloon : MonoBehaviour
         rb.AddForce(Vector3.down * balloonGravity, ForceMode.Acceleration);
     }
 
-    void Rotation()
-    {
+    void Rotation() {
         if (com.left || !com.isActiveAndEnabled && Input.GetKey(KeyCode.A)) desiredRot -= rotSpeed * Time.deltaTime;
         if (com.right || !com.isActiveAndEnabled && Input.GetKey(KeyCode.D)) desiredRot += rotSpeed * Time.deltaTime;
         var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, desiredRot, transform.eulerAngles.z);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);
     }
 
-    void Abilities()
-    {
-        if (burner)
-        {
+    void Abilities() {
+        if (burner) {
             //remove - from transforms once model is correct!!! (not 180 flip)
             if (rb.velocity.y < 0) rb.AddForce(-transform.up * (1.4f * burnerPower), ForceMode.Acceleration);
             else rb.AddForce(-transform.up * (0.8f * burnerPower), ForceMode.Acceleration);
             firePlaceholder.SetActive(true);
             burner = false;
         }
-        if (dropLantern)
-        {
+        if (dropLantern) {
             Instantiate(lantern, dropSpot.position, Quaternion.identity);
             timer = startTimer;
             dropLantern = false;
         }
         else timer -= Time.deltaTime;
     }
-}
+} 
