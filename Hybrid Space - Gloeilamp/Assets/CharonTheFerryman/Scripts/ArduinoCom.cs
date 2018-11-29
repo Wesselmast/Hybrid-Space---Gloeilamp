@@ -6,7 +6,7 @@ using System.IO.Ports;
 public class ArduinoCom : MonoBehaviour {
 
     [HideInInspector]
-    public bool left, right = false;
+    public bool left, right, up, barrels = false;
 
     //this stuff has to be hardcoded, so if you get weird errors check this out
     private SerialPort port = new SerialPort("COM7", 9600);
@@ -19,10 +19,12 @@ public class ArduinoCom : MonoBehaviour {
 	
 	void Update () {
         if(int.TryParse(port.ReadLine(), out input)) {
-            Debug.Log("Input: " + input);   
+            Debug.Log("Input: " + input);
             if (input == 1) left = true;
             else if (input == 2) right = true;
-            else { left = false; right = false; }
+            else if (input == 3) up = true;
+            else if (input == 4) barrels = true;
+            else { left = false; right = false; barrels = false; up = false; }
         }
 	}
 }
