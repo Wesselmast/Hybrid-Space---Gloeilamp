@@ -41,6 +41,11 @@ public class MoveBalloon : MonoBehaviour {
     }
 
     void Update() {
+<<<<<<< HEAD
+        direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        //Debug.Log(transform.position.y);
+=======
+>>>>>>> master
         if (Input.GetKey(KeyCode.Space)) burner = true;
         if (Input.GetKey(KeyCode.B) && timer <= 0) dropLantern = true;
     }
