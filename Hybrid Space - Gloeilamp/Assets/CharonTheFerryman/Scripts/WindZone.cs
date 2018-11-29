@@ -17,7 +17,9 @@ public class WindZone : MonoBehaviour {
     };
 
     [SerializeField]
-    private float strenght, startTimer;
+    private float strenght, minWindValue, maxWindValue;
+    [SerializeField]
+    private string[] acceptedTags;
 
     private int dirIndex;
     private Vector3 direction;
@@ -30,19 +32,19 @@ public class WindZone : MonoBehaviour {
 
     private void FixedUpdate() {
         if (timer <= 0) {
-            int rand = Random.Range(0, 2);
-            if (dirIndex >= compass.Length - rand - 1) dirIndex = 0;
-            direction.x = compass[dirIndex += rand].x;
-            direction.z = compass[dirIndex += rand].y;
-            timer = startTimer;
+            if (dirIndex >= compass.Length) dirIndex = 0;
+            direction.x = compass[dirIndex].x;
+            direction.z = compass[dirIndex++].y;
+            timer = Random.Range(minWindValue, maxWindValue);
         }
         else timer -= Time.deltaTime;
     }
 
     private void OnTriggerStay(Collider other) {
-        var rb = other.GetComponent<Rigidbody>();
-        if (rb != null) {
-            rb.AddForce(direction * strenght, ForceMode.Force);
+        foreach (string tag in acceptedTags) {
+            if (other.tag == tag) {
+                other.transform.position += direction * Time.fixedDeltaTime;
+            }
         }
     }
 }
