@@ -5,15 +5,16 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_Current("Current Speed", float) = .01
 		_WaveHeight("Wave Height", Range(0.0, 1.0)) = .1
+		_Transparency("Transparency", Range(0.0, 1.0)) = .1
 		_Color("Color", Color) = (1,1,1,1)
 		[KeywordEnum(North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest)] _WindDir("Wind Direction", int) = 0
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
+		Tags { "RenderType"="Transparent" "Queue"="Transparent"}
 		LOD 100
 		Blend One One
-
+	
 		Pass
 		{
 			CGPROGRAM
@@ -40,6 +41,7 @@
 			float4 _Color;
 			float _Current;
 			float _WaveHeight;
+			float _Transparency;
 			int _WindDir;
 			
 			v2f vert (appdata v)
@@ -63,6 +65,7 @@
 				if (_WindDir == 6)animatedUV = i.uv + float2(-_Time.z * _Current, 0);
 				if (_WindDir == 7)animatedUV = i.uv + float2(_Time.z * _Current, -_Time.z * _Current);
 				float4 col = tex2D(_MainTex, animatedUV) * _Color;
+				col.a = 1.0;
 				return col;
 			}
 			ENDCG

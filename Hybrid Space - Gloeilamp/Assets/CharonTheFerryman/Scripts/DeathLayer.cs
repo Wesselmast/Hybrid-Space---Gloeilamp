@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DeathLayer : MonoBehaviour {
+    [SerializeField]
+    private GameObject[] toDestroy;
+
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Barrel") Destroy(other.gameObject);
-        if (other.tag == "Player") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        for (int i = 0; i < toDestroy.Length; i++) {
+            if (other.tag == toDestroy[i].tag) other.GetComponent<IDestroyable>().Destroy();
+        }
     }
 }

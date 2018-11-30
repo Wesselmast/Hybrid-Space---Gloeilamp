@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/CharonTheFerryman/Scenes/Ferryman Kevin.unity
+- path: Assets/CharonTheFerryman/Scenes/Multiplayer.unity
   isLoaded: 1
   isActive: 1
