@@ -9,11 +9,12 @@
 		_Color("Color", Color) = (1,1,1,1)
 		[KeywordEnum(North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest)] _WindDir("Wind Direction", int) = 0
 	}
-	SubShader
-	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent"}
+		SubShader
+		{
+		Tags { "RenderType" = "Transparent" "Queue" = "Transparent"}
 		LOD 100
-		Blend One One
+		ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
 	
 		Pass
 		{
@@ -65,7 +66,7 @@
 				if (_WindDir == 6)animatedUV = i.uv + float2(-_Time.z * _Current, 0);
 				if (_WindDir == 7)animatedUV = i.uv + float2(_Time.z * _Current, -_Time.z * _Current);
 				float4 col = tex2D(_MainTex, animatedUV) * _Color;
-				col.a = 1.0;
+				col.a = _Transparency;
 				return col;
 			}
 			ENDCG

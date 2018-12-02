@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BalloonBurner))]
+[RequireComponent(typeof(BalloonInput))]
 public class BalloonEngine : MonoBehaviour {
 
     [SerializeField]

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DestroyPlayer : MonoBehaviour, IDestroyable {
-    public void Destroy() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+
+    private Vector3 startPos;
+
+    private void Start() { startPos = transform.position; }
+    public void Destroy() { transform.position = startPos; }
 }
