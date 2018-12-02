@@ -16,7 +16,6 @@ public class BalloonInput : MonoBehaviour {
     void Update () {
         if (com.up || Input.GetKey(KeyCode.Space)) GoingUp = true;
         else GoingUp = false;
-
         if (com.left || Input.GetKey(KeyCode.A)) OnRotateLeft();
         if (com.right || Input.GetKey(KeyCode.D)) OnRotateRight();
         if (com.dropItems || Input.GetKeyDown(KeyCode.B)) OnDrop();
