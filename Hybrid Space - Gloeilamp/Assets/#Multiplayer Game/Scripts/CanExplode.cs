@@ -8,6 +8,8 @@ public class CanExplode : MonoBehaviour {
     [SerializeField]
     private float startExplodeTimer;
     public float radius;
+    [SerializeField]
+    private GameObject explosionParticle;
 
     private float explodeTimer;
 
@@ -19,6 +21,8 @@ public class CanExplode : MonoBehaviour {
         if (explodeTimer <= 0) {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius, playerLayer);
             foreach (Collider col in colliders) col.GetComponent<IDestroyable>().Destroy();
+            GameObject part = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            Destroy(part, 2f);
             Destroy(gameObject);
         }
         else explodeTimer -= Time.deltaTime;
