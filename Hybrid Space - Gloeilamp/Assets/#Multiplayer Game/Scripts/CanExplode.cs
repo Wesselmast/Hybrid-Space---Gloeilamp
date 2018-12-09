@@ -11,6 +11,9 @@ public class CanExplode : MonoBehaviour {
     [SerializeField]
     private GameObject explosionParticle;
 
+    private GameObject explosion;
+    private bool hasExploded = false;
+
     private float explodeTimer;
 
     private void Start() {
@@ -18,13 +21,20 @@ public class CanExplode : MonoBehaviour {
     }
 
     private void Update() {
-        if (explodeTimer <= 0) {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, playerLayer);
-            foreach (Collider col in colliders) col.GetComponent<IDestroyable>().Destroy();
-            GameObject part = Instantiate(explosionParticle, transform.position, Quaternion.identity);
-            Destroy(part, 2f);
-            Destroy(gameObject);
+        if (explodeTimer <= 0 && !hasExploded) {
+            Explode();
+            hasExploded = true;
         }
         else explodeTimer -= Time.deltaTime;
+    }
+
+    private void Explode() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, playerLayer);
+        foreach (Collider col in colliders) col.GetComponent<IDestroyable>().Destroy();
+
+        explosion = (GameObject)Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        Destroy(explosion, 1.0F);
+
+        Destroy(gameObject);
     }
 }
