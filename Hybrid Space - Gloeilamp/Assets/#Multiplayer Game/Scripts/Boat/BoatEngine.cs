@@ -3,6 +3,7 @@ using System.Collections;
 using VRTK.Controllables;
 using Valve.VR.InteractionSystem;
 
+[RequireComponent(typeof(EnableVR))]
 public class BoatEngine : MonoBehaviour {
 
     [Header("Boat Settings")]
@@ -24,15 +25,14 @@ public class BoatEngine : MonoBehaviour {
     private Transform mainSail;
 
     private float desiredRotY, desiredRotZ;
-
     private float sailRotY;
-
     public CircularDrive steeringDrive;
-
     Rigidbody rb;
+    EnableVR checkVR;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        checkVR = GetComponent<EnableVR>();
         desiredRotY = transform.eulerAngles.y;
         desiredRotZ = transform.eulerAngles.z;
         sailRotY = mainSail.localEulerAngles.y;
@@ -52,15 +52,25 @@ public class BoatEngine : MonoBehaviour {
 
     // Check in which direction the boat will steer
     private void Steering() {
-        desiredRotY += steerSpeed * -steeringDrive.outAngle * Time.deltaTime;
 
-        if (allowTilting) {
-            desiredRotZ += -steeringDrive.outAngle * Time.deltaTime;
-            desiredRotZ = Mathf.Clamp(desiredRotZ, -tiltLimit, tiltLimit);
-        }
+        // If enabledVR is not checked
+        if (!checkVR.enableVR) {
+            float rotation = Input.GetAxis("Horizontal");
+            transform.Rotate(0, rotation * steerSpeed, 0);
+        } 
         
-        var desiredRotQ = Quaternion.Euler(0, desiredRotY, Mathf.Clamp(desiredRotZ, -tiltLimit, tiltLimit));
-        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);
+        // If enabledVR is checked
+        else {
+            desiredRotY += steerSpeed * -steeringDrive.outAngle * Time.deltaTime;
+
+            if (allowTilting) {
+                desiredRotZ += -steeringDrive.outAngle * Time.deltaTime;
+                desiredRotZ = Mathf.Clamp(desiredRotZ, -tiltLimit, tiltLimit);
+            }
+
+            var desiredRotQ = Quaternion.Euler(0, desiredRotY, Mathf.Clamp(desiredRotZ, -tiltLimit, tiltLimit));
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);
+        } 
     }
 
     // Rotate the main sail based on the direction in which the boat is steering
