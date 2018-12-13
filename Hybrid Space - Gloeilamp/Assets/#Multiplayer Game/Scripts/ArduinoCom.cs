@@ -9,12 +9,12 @@ public class ArduinoCom : MonoBehaviour {
     private SerialPort port = new SerialPort("COM7", 9600);
     private int input;
 
-	void Awake () {
+	private void Awake () {
         try { port.Open(); }
         catch (System.Exception) { gameObject.SetActive(false); }
     }
 	
-	void Update () {
+	private void Update () {
         if(int.TryParse(port.ReadLine(), out input)) {
             Debug.Log("Input: " + input);
             if (input == 1) left = true;

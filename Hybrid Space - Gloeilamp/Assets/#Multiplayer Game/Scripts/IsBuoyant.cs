@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class IsBuoyant : MonoBehaviour {
 
-    [SerializeField]
-    private Transform water;
     [SerializeField]
     private float floatHeight = 2f;
     [SerializeField]
     private float bounceDamp = 0.05f;
     [SerializeField]
     private Vector3 buoyancyOffset;
+    [SerializeField]
+    private float waterLayer;
 
     private Rigidbody rb;
     private Vector3 actionPoint;
@@ -19,12 +18,12 @@ public class IsBuoyant : MonoBehaviour {
     private float forceFactor;
 
     private void Start() {
-        if (GetComponent<Rigidbody>() != null) rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>(); 
     }
 
-    void Update () {
+    private void FixedUpdate () {
         actionPoint = transform.position + transform.TransformDirection(buoyancyOffset);
-        forceFactor = 1f - ((actionPoint.y - water.position.y) / floatHeight);
+        forceFactor = 1f - ((actionPoint.y - waterLayer) / floatHeight);
 
         if (forceFactor > 0) {
             uplift = -Physics.gravity * (forceFactor - rb.velocity.y * bounceDamp);

@@ -1,26 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
     [SerializeField]
     private Transform target;
     [SerializeField]
-    private float smoothSpeed;
+    private float damping;
     [SerializeField]
     private Vector3 offset;
 
-    /*
-    private void FixedUpdate() {
-        transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothSpeed);
-        transform.eulerAngles = Vector3.Lerp(transform.position, target.eulerAngles, smoothSpeed);
-    }
-    */
+    private Transform thisTransform;
 
-    private void LateUpdate() {
-        Vector3 position = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, position, smoothSpeed);
-        transform.position = smoothedPosition;
-        transform.LookAt(target);
+    private void Start() {
+        thisTransform = transform;
+    }
+
+    private void FixedUpdate() {
+        transform.position = target.position + offset;
+        Quaternion rotation = Quaternion.LookRotation(target.position - thisTransform.position);
+        thisTransform.rotation = Quaternion.Slerp(thisTransform.rotation, rotation, Time.deltaTime * damping);
     }
 }

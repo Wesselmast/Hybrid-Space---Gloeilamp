@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CanExplode : MonoBehaviour {
+
+    public float radius;
+
     [SerializeField]
     private LayerMask playerLayer;
     [SerializeField]
     private float startExplodeTimer;
-    public float radius;
     [SerializeField]
     private GameObject explosionParticle;
 
-    private GameObject explosion;
     private bool hasExploded = false;
-
     private float explodeTimer;
 
     private void Start() {
@@ -30,11 +30,12 @@ public class CanExplode : MonoBehaviour {
 
     private void Explode() {
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, playerLayer);
-        foreach (Collider col in colliders) col.GetComponent<IDestroyable>().Destroy();
-
-        explosion = (GameObject)Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        foreach (Collider col in colliders) {
+            try { col.GetComponent<IDestroyable>().Destroy(); }
+            catch(System.Exception) { }
+        }
+        GameObject explosion = Instantiate(explosionParticle, transform.position, Quaternion.identity);
         Destroy(explosion, 1.0F);
-
         Destroy(gameObject);
     }
 }
