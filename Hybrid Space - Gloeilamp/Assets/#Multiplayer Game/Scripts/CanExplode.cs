@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class CanExplode : MonoBehaviour {
 
     public float radius;
@@ -13,8 +12,13 @@ public class CanExplode : MonoBehaviour {
     [SerializeField]
     private GameObject explosionParticle;
 
+    private FMODCom com;
     private bool hasExploded = false;
     private float explodeTimer;
+
+    private void Awake() {
+        com = new FMODCom("BarrelExplosion");
+    }
 
     private void Start() {
         explodeTimer = startExplodeTimer;
@@ -34,6 +38,7 @@ public class CanExplode : MonoBehaviour {
             try { col.GetComponent<IDestroyable>().Destroy(); }
             catch(System.Exception) { }
         }
+        com.Play3D(transform, GetComponent<Rigidbody>());
         GameObject explosion = Instantiate(explosionParticle, transform.position, Quaternion.identity);
         Destroy(explosion, 1.0F);
         Destroy(gameObject);
