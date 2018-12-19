@@ -10,6 +10,7 @@ public class BalloonEngine : MonoBehaviour {
     public float RotationSpeed { get { return rotationSpeed; } }
     [SerializeField]
     private float movementSpeed = 5.0f;
+    public float MovementSpeed { get { return movementSpeed; } set { movementSpeed = value; } }
 
     private float desiredRot;
 

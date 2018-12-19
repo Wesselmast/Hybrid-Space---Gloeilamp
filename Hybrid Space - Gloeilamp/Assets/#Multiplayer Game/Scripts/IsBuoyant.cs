@@ -15,10 +15,15 @@ public class IsBuoyant : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 actionPoint;
     private Vector3 uplift;
+    private FMODCom splashSound;
     private float forceFactor;
 
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Start() {
-        rb = GetComponent<Rigidbody>(); 
+        splashSound = new FMODCom("WaterSplash");
     }
 
     private void FixedUpdate () {
@@ -26,6 +31,7 @@ public class IsBuoyant : MonoBehaviour {
         forceFactor = 1f - ((actionPoint.y - waterLayer) / floatHeight);
 
         if (forceFactor > 0) {
+            splashSound.Play3D(transform, rb);
             uplift = -Physics.gravity * (forceFactor - rb.velocity.y * bounceDamp);
             rb.AddForceAtPosition(uplift, actionPoint);
         }

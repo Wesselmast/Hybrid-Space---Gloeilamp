@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/#Multiplayer Game/Scenes/Multiplayer.unity
+- path: C:/Users/Wessel/Desktop/Github School/StateOfMind/Assets/Scenes/UMLImplementation.unity
   isLoaded: 1
   isActive: 1

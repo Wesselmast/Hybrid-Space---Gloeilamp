@@ -13,9 +13,7 @@ public static class GlobalCountDown {
     public static TimeSpan TimeLeft {
         get {
             TimeSpan result = TotalTime - (DateTime.UtcNow - TimeStarted);
-            if (result.TotalSeconds <= 0)
-                return TimeSpan.Zero;
-            return result;
+            return result.TotalSeconds <= 0 ? TimeSpan.Zero : result;
         }
     }
 }

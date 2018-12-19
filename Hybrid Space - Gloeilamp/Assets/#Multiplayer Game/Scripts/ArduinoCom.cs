@@ -2,9 +2,12 @@
 using System.IO.Ports;
 
 public class ArduinoCom : MonoBehaviour {
-
-    [HideInInspector]
-    public bool left, right, up, dropItems, switchCameras;
+    private bool left, right, up, dropItems, switchCameras;
+    public bool Left { get { return left; } }
+    public bool Right { get { return right; } }
+    public bool Up { get { return up; } }
+    public bool DropItems { get { return dropItems; } }
+    public bool SwitchCameras { get { return switchCameras; } }
 
     private SerialPort port = new SerialPort("COM7", 9600);
     private int input;
