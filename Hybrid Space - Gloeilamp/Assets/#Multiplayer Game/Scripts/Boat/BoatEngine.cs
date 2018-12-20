@@ -17,6 +17,9 @@ public class BoatEngine : MonoBehaviour {
     private bool allowTilting = true;
     [SerializeField]
     private float tiltLimit = 10f;
+    [Header("Sail Settings")]
+    [SerializeField]
+    private bool allowSailRotation = true;
     [SerializeField]
     private float sailRotLimit = 60f;
     [SerializeField]
@@ -36,7 +39,7 @@ public class BoatEngine : MonoBehaviour {
         sailRotY = mainSail.localEulerAngles.y;
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         Movement();
         Steering();
         RotateSail();
@@ -44,7 +47,10 @@ public class BoatEngine : MonoBehaviour {
 
     // Move forward based on acceleration speed
     private void Movement() {
-        transform.Translate(-Vector3.forward * accelerationSpeed * Time.deltaTime);
+        //accelerationSpeed = rb.velocity.magnitude;
+        //rb.MovePosition(transform.position + (-transform.forward * accelerationSpeed * Time.deltaTime));
+        rb.velocity = -transform.forward * accelerationSpeed * Time.deltaTime;
+        //rb.velocity = new Vector3(0, 0, accelerationSpeed) * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, floatHeight, transform.position.z);
     }
 
@@ -73,10 +79,12 @@ public class BoatEngine : MonoBehaviour {
 
     // Rotate the main sail based on the direction in which the boat is steering
     private void RotateSail() {
-        sailRotY += -steeringDrive.outAngle * Time.deltaTime;
-        sailRotY = Mathf.Clamp(sailRotY, -sailRotLimit, sailRotLimit);
+        if (allowSailRotation) {
+            sailRotY += -steeringDrive.outAngle * Time.deltaTime;
+            sailRotY = Mathf.Clamp(sailRotY, -sailRotLimit, sailRotLimit);
 
-        var sailRotQ = Quaternion.Euler(0, sailRotY, 0);
-        mainSail.localRotation = Quaternion.Slerp(mainSail.localRotation, sailRotQ, Time.deltaTime * damping);
+            var sailRotQ = Quaternion.Euler(0, sailRotY, 0);
+            mainSail.localRotation = Quaternion.Slerp(mainSail.localRotation, sailRotQ, Time.deltaTime * damping);
+        }
     }
 }

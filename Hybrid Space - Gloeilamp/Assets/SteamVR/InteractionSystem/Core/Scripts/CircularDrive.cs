@@ -22,6 +22,8 @@ namespace Valve.VR.InteractionSystem
 			ZAxis
 		};
 
+        public GameObject instructionUI;
+
 		[Tooltip( "The axis around which the circular drive will rotate in local space" )]
 		public Axis_t axisOfRotation = Axis_t.XAxis;
 
@@ -183,9 +185,13 @@ namespace Valve.VR.InteractionSystem
 			UpdateAll();
 		}
 
+        private void FixedUpdate() {
+            UpdateGameObject();
+        }
 
-		//-------------------------------------------------
-		void OnDisable()
+
+        //-------------------------------------------------
+        void OnDisable()
 		{
 			if ( handHoverLocked )
 			{
@@ -253,15 +259,17 @@ namespace Valve.VR.InteractionSystem
                 // Trigger was just pressed
                 lastHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
 
+
 				if ( hoverLock )
 				{
 					hand.HoverLock(interactable);
 					handHoverLocked = hand;
-				}
+
+                }
 
 				driving = true;
-
-				ComputeAngle( hand );
+                instructionUI.SetActive(false);
+                ComputeAngle( hand );
 				UpdateAll();
 
                 hand.HideGrabHint();
@@ -273,15 +281,15 @@ namespace Valve.VR.InteractionSystem
 				{
 					hand.HoverUnlock(interactable);
 					handHoverLocked = null;
-				}
-
+                    instructionUI.SetActive(false);
+                }
                 driving = false;
                 grabbedWithType = GrabTypes.None;
             }
 
             if ( driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable )
 			{
-				ComputeAngle( hand );
+                ComputeAngle( hand );
 				UpdateAll();
 			}
 		}
@@ -416,6 +424,7 @@ namespace Valve.VR.InteractionSystem
 			if ( rotateGameObject )
 			{
 				transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+				//transform.rotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
 			}
 		}
 
@@ -438,7 +447,7 @@ namespace Valve.VR.InteractionSystem
 		private void UpdateAll()
 		{
 			UpdateLinearMapping();
-			UpdateGameObject();
+			//UpdateGameObject();
 			UpdateDebugText();
 		}
 
