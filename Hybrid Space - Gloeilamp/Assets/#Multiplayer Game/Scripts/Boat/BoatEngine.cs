@@ -47,10 +47,7 @@ public class BoatEngine : MonoBehaviour {
 
     // Move forward based on acceleration speed
     private void Movement() {
-        //accelerationSpeed = rb.velocity.magnitude;
-        //rb.MovePosition(transform.position + (-transform.forward * accelerationSpeed * Time.deltaTime));
         rb.velocity = -transform.forward * accelerationSpeed * Time.deltaTime;
-        //rb.velocity = new Vector3(0, 0, accelerationSpeed) * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, floatHeight, transform.position.z);
     }
 

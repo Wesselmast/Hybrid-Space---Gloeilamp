@@ -239,7 +239,7 @@ namespace Valve.VR.InteractionSystem
 			if ( driving && hand )
 			{
                 //hand.TriggerHapticPulse() //todo: fix
-				StartCoroutine( HapticPulses( hand, 1.0f, 10 ) );
+				StartCoroutine(HapticPulses(hand, 1.0f, 10 ));
 			}
 
 			driving = false;
@@ -289,7 +289,7 @@ namespace Valve.VR.InteractionSystem
 
             if ( driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable )
 			{
-                ComputeAngle( hand );
+                ComputeAngle(hand);
 				UpdateAll();
 			}
 		}
@@ -423,8 +423,9 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( rotateGameObject )
 			{
-				transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
-				//transform.rotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+                //transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+                transform.rotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+                //transform.rotation = Quaternion.identity;
 			}
 		}
 
