@@ -2,14 +2,12 @@
 
 public class InitGame : MonoBehaviour {
     [SerializeField]
-    private float mins, secs;
-    [SerializeField]
     private string sceneToLoadOnLose;
     [SerializeField]
-    private GameObject boat, balloon;
+    private Vector2 time;
 
     private void Start() {
-        CustomTimer.Init(mins, secs, sceneToLoadOnLose);
+        CustomTimer.Init(time.x, time.y, sceneToLoadOnLose);
     }
 
     private void FixedUpdate() {
