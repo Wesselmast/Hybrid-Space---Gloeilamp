@@ -2,12 +2,20 @@
 
 [RequireComponent(typeof(Rigidbody))]
 public class CanExplode : MonoBehaviour {
-    public float radius;
-
+    private enum BarrelType {
+        InstantBarrel,
+        DelayedBarrel
+    }
+    [Header("Barrel Type")]
     [SerializeField]
-    private LayerMask playerLayer;
+    private BarrelType barrelType;
+
+    [Header("Barrel Stats")]
+    public float radius;
     [SerializeField]
     private float startExplodeTimer;
+    [SerializeField]
+    private LayerMask playerLayer;
     [SerializeField]
     private GameObject explosionParticle;
 
@@ -19,7 +27,14 @@ public class CanExplode : MonoBehaviour {
     private void Awake() {
         com = new FMODCom("BarrelExplosion");
         rb = GetComponent<Rigidbody>();
-        barrel = new InstantBarrel(transform);
+        switch (barrelType) {
+            case BarrelType.InstantBarrel:
+                barrel = new InstantBarrel(transform);
+                break;
+            case BarrelType.DelayedBarrel:
+                barrel = new DelayedBarrel(startExplodeTimer);
+                break;
+        }
         explode = Explode;
     }
 

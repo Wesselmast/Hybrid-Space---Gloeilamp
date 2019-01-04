@@ -11,14 +11,22 @@ public class ItemDropper : MonoBehaviour {
 
     private float dropTimer;
 
-	void Awake() { GetComponent<BalloonInput>().OnDrop += Drop; }
-    private void FixedUpdate() { dropTimer -= Time.fixedDeltaTime; }
+	private void Awake() {
+        GetComponent<BalloonInput>().OnDrop += Drop;
+    }
 
-    void Drop() {
+    private void FixedUpdate() {
+        dropTimer -= Time.fixedDeltaTime;
+    }
+
+    private void Drop() {
         if (dropTimer <= 0) {
-            Instantiate(item, dropSpot.position, Quaternion.identity);
+            InstantiateBarrel();
             dropTimer = startDropTimer;
         }
     }
-	
+
+    public void InstantiateBarrel() {
+        Instantiate(item, dropSpot.position, Quaternion.identity);
+    }
 }
