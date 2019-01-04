@@ -16,6 +16,6 @@ public static class CustomTimer {
         MinutesLeft = Mathf.FloorToInt(TotalSeconds / 60f);
         SecondsLeft = Mathf.FloorToInt(TotalSeconds % 60f);
         TotalSeconds -= Time.deltaTime;
-        if (MinutesLeft <= 0 && CustomTimer.SecondsLeft <= 0) SceneManager.LoadScene(sceneToLoadOnLose);
+        if (MinutesLeft <= 0 && SecondsLeft <= 0) SceneManager.LoadScene(sceneToLoadOnLose);
     }
 }

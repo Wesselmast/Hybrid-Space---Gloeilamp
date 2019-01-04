@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class InstantBarrel : IBarrel {
-    private Transform transform;
+    private readonly Transform transform;
 
     public InstantBarrel(Transform transform) {
         this.transform = transform;
@@ -9,8 +9,8 @@ public class InstantBarrel : IBarrel {
 
     public void Tick(Del explode) {
         bool explosion = false;
-        Collider[] cols = Physics.OverlapSphere(transform.position, 0.1f);
-        foreach (var col in cols) explosion = true;
+        Collider[] cols = Physics.OverlapSphere(transform.position, 1.1f);
+        foreach (var col in cols) if (col.gameObject.tag == "Boat") explosion = true;
         if (explosion) explode();
     }
 }
