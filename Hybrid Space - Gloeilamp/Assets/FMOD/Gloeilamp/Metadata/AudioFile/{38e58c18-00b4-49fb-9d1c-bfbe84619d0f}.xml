@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{38e58c18-00b4-49fb-9d1c-bfbe84619d0f}">
+        <property name="assetPath">
+            <value>Creak3Temp.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>4.6346258503401359</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{fdf8be4e-68da-44dc-b402-1c402fc9d416}</destination>
+        </relationship>
+    </object>
+</objects>

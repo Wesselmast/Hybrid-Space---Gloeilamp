@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="MasterBank" id="{6821d50d-12a8-48f5-acd7-3ea723d3582b}">
+        <property name="name">
+            <value>Sound Effects</value>
+        </property>
+        <relationship name="folder">
+            <destination>{c7c4e639-bc70-4615-9f4a-4f036be0dad7}</destination>
+        </relationship>
+    </object>
+</objects>
