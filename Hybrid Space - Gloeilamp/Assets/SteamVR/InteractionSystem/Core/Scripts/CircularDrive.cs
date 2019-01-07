@@ -24,6 +24,8 @@ namespace Valve.VR.InteractionSystem
 
         public GameObject instructionUI;
 
+        public GameObject steerPos;
+
 		[Tooltip( "The axis around which the circular drive will rotate in local space" )]
 		public Axis_t axisOfRotation = Axis_t.XAxis;
 
@@ -269,6 +271,7 @@ namespace Valve.VR.InteractionSystem
 
 				driving = true;
                 instructionUI.SetActive(false);
+                hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
                 ComputeAngle( hand );
 				UpdateAll();
 
@@ -281,10 +284,11 @@ namespace Valve.VR.InteractionSystem
 				{
 					hand.HoverUnlock(interactable);
 					handHoverLocked = null;
-                    instructionUI.SetActive(false);
                 }
                 driving = false;
                 grabbedWithType = GrabTypes.None;
+                instructionUI.SetActive(false);
+                hand.DetachObject(gameObject);
             }
 
             if ( driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable )
@@ -423,8 +427,8 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( rotateGameObject )
 			{
-                //transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
-                transform.rotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+                transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+                //transform.rotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
                 //transform.rotation = Quaternion.identity;
 			}
 		}

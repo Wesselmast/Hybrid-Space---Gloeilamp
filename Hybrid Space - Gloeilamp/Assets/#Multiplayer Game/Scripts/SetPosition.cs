@@ -5,11 +5,11 @@ using UnityEngine;
 public class SetPosition : MonoBehaviour {
 
     [SerializeField]
-    private Transform steerPos;
+    private Transform objPos;
 
 	// Update is called once per frame
-	void LateUpdate () {
-        transform.position = steerPos.transform.position;
-        transform.rotation = steerPos.transform.rotation;
-	}
+	void FixedUpdate () {
+        transform.position = objPos.transform.position;
+        transform.eulerAngles = new Vector3(objPos.eulerAngles.x, transform.eulerAngles.y, objPos.eulerAngles.z);
+    }
 }
