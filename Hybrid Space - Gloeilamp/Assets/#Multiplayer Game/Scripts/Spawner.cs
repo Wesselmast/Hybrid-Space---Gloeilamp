@@ -13,7 +13,8 @@ public class Spawner : MonoBehaviour {
 
     private void Start () {
         for (int i = 0; i < spawnPoints.Length; i++) {
-            Instantiate(spawnableObjects[Random.Range(0, spawnableObjects.Length)], spawnPoints[i].position, Quaternion.identity);
+            int index = Random.Range(0, spawnableObjects.Length);
+            Instantiate(spawnableObjects[index], spawnPoints[i].position, spawnableObjects[index].transform.rotation);
         }
 	}
 }

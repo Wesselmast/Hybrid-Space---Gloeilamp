@@ -6,17 +6,19 @@ public class BalloonInput : MonoBehaviour {
     private ArduinoCom com;
 
     public bool GoingUp { get; private set; }
-    public event Action OnRotateLeft = delegate { };
-    public event Action OnRotateRight = delegate { };
+    public event Action OnRotateLeftSoft = delegate { };
+    public event Action OnRotateRightSoft = delegate { };
+    public event Action OnRotateLeftHard = delegate { };
+    public event Action OnRotateRightHard = delegate { };
     public event Action OnDrop = delegate { };
     public event Action OnSwitch = delegate { };
 
     void Update () {
-        if (com.Up || Input.GetKey(KeyCode.Space)) GoingUp = true;
-        else GoingUp = false;
-        if (com.Left || Input.GetKey(KeyCode.A)) OnRotateLeft();
-        if (com.Right || Input.GetKey(KeyCode.D)) OnRotateRight();
+        GoingUp = com.Up || Input.GetKey(KeyCode.Space) ? true : false;
+        if (com.SoftLeft || Input.GetKey(KeyCode.A)) OnRotateLeftSoft();
+        if (com.SoftRight || Input.GetKey(KeyCode.D)) OnRotateRightSoft();
         if (com.DropItems || Input.GetKeyDown(KeyCode.B)) OnDrop();
-        if (com.SwitchCameras || Input.GetKeyDown(KeyCode.M)) OnSwitch();
+        if (com.HardLeft) OnRotateLeftHard();
+        if (com.HardRight) OnRotateRightHard();
 	}
 }

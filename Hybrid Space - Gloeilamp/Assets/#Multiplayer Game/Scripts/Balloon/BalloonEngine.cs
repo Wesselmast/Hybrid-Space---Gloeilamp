@@ -12,11 +12,16 @@ public class BalloonEngine : MonoBehaviour {
     private float movementSpeed = 5.0f;
     public float MovementSpeed { get { return movementSpeed; } set { movementSpeed = value; } }
 
+    [SerializeField]
+    private float hardRotateModifier;
+
     private float desiredRot;
 
     private void Start () {
-        GetComponent<BalloonInput>().OnRotateLeft += RotateLeft;
-        GetComponent<BalloonInput>().OnRotateRight += RotateRight;
+        GetComponent<BalloonInput>().OnRotateLeftSoft += RotateLeftSoft;
+        GetComponent<BalloonInput>().OnRotateRightSoft += RotateRightSoft;
+        GetComponent<BalloonInput>().OnRotateLeftHard += RotateLeftHard;
+        GetComponent<BalloonInput>().OnRotateRightHard += RotateRightHard;
         desiredRot = transform.eulerAngles.y;
     }
 
@@ -26,11 +31,19 @@ public class BalloonEngine : MonoBehaviour {
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);
     }
 
-    private void RotateLeft() {
+    private void RotateLeftSoft() {
         desiredRot -= rotationSpeed * Time.deltaTime;
     }
 
-    private void RotateRight() {
+    private void RotateRightSoft() {
         desiredRot += rotationSpeed * Time.deltaTime;
+    }
+
+    private void RotateLeftHard() {
+        desiredRot -= rotationSpeed * Time.deltaTime * hardRotateModifier;
+    }
+
+    private void RotateRightHard() {
+        desiredRot += rotationSpeed * Time.deltaTime * hardRotateModifier;
     }
 }

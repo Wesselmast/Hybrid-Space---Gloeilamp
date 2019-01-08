@@ -11,8 +11,8 @@ public class SteeringWheel : MonoBehaviour {
     private float desiredRot;
 
     private void Start () {
-        balloon.GetComponent<BalloonInput>().OnRotateLeft += RotateLeft;
-        balloon.GetComponent<BalloonInput>().OnRotateRight += RotateRight;
+        balloon.GetComponent<BalloonInput>().OnRotateLeftSoft += RotateLeft;
+        balloon.GetComponent<BalloonInput>().OnRotateRightSoft += RotateRight;
         engine = balloon.GetComponent<BalloonEngine>();
         desiredRot = transform.localEulerAngles.x;
     }
