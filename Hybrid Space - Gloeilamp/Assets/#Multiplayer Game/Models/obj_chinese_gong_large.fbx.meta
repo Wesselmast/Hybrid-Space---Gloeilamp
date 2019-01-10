@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 guid: e006be329591a2f418fc5c01c73d6d73
+=======
+guid: becb5abcad09a844495f3a65fc17c0f8
+>>>>>>> Stashed changes
 =======
 guid: becb5abcad09a844495f3a65fc17c0f8
 >>>>>>> Stashed changes
@@ -35,8 +39,11 @@ ModelImporter:
     4300004: polySurface10
     4300006: polySurface7
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   externalObjects: {}
 =======
+=======
+>>>>>>> Stashed changes
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -53,6 +60,9 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert3
     second: {fileID: 2100002, guid: da1c6a2f8eebd114da11e1fd5d856af1, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   materials:
     importMaterials: 1
