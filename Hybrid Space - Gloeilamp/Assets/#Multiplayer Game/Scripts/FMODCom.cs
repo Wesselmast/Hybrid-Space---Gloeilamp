@@ -5,24 +5,24 @@ public class FMODCom {
     FMOD.Studio.PLAYBACK_STATE playbackState;
 
     public FMODCom(string eventName) {
-        FMODUnity.RuntimeManager.StudioSystem.setNumListeners(2);
-        FMODEvent = FMODUnity.RuntimeManager.CreateInstance("event:/" + eventName);
+        //FMODUnity.RuntimeManager.StudioSystem.setNumListeners(2);
+        //FMODEvent = FMODUnity.RuntimeManager.CreateInstance("event:/" + eventName);
     }
 
     public void Play3D(Transform transform, Rigidbody rb) {
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(FMODEvent, transform, rb);
-        Play();
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(FMODEvent, transform, rb);
+       // Play();
     }
 
     public void SetParameter(string name, float amt) {
-        FMOD.Studio.ParameterInstance par;
-        FMODEvent.getParameter(name, out par);
-        par.setValue(amt);
+       // FMOD.Studio.ParameterInstance par;
+        //FMODEvent.getParameter(name, out par);
+        //par.setValue(amt);
     }
 
     public void Play() {
-        FMODEvent.getPlaybackState(out playbackState);
-        if (playbackState != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
-        FMODEvent.start();
+        //FMODEvent.getPlaybackState(out playbackState);
+        //if (playbackState != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
+       // FMODEvent.start();
     }
 }
