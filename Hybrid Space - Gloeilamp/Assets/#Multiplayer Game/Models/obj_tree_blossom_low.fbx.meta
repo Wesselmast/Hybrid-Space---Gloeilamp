@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 960f77a1eef964b4484e93d86ed1808b
+guid: c618d8017268a484590b3cbf699af3ee
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert3
-    2100002: lambert4
-    2100004: lambert2
-    2100006: lambert5
+    2100000: lambert1
+    2100002: mat_blossom
     2300000: //RootNode
     3300000: //RootNode
-    4300000: ChineseOderJapaneseHouse
+    4300000: msh_tree
   externalObjects: {}
   materials:
     importMaterials: 1
