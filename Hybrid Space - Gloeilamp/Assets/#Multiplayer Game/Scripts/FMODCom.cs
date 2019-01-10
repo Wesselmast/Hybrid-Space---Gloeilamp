@@ -5,6 +5,7 @@ public class FMODCom {
     FMOD.Studio.PLAYBACK_STATE playbackState;
 
     public FMODCom(string eventName) {
+        FMODUnity.RuntimeManager.StudioSystem.setNumListeners(2);
         FMODEvent = FMODUnity.RuntimeManager.CreateInstance("event:/" + eventName);
     }
 
