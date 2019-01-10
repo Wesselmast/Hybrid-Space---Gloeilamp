@@ -13,11 +13,19 @@ public class FMODCom {
         //FMODUnity.RuntimeManager.AttachInstanceToGameObject(FMODEvent, transform, rb);
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
        // Play();
     }
 
     public void SetParameter(string name, float amt) {
        // FMOD.Studio.ParameterInstance par;
+=======
+        //Play();
+    }
+
+    public void SetParameter(string name, float amt) {
+        //FMOD.Studio.ParameterInstance par;
+>>>>>>> Stashed changes
 =======
         //Play();
     }
@@ -41,7 +49,11 @@ public class FMODCom {
         //if (playbackState != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
        // FMODEvent.start();
+=======
+        //FMODEvent.start();
+>>>>>>> Stashed changes
 =======
         //FMODEvent.start();
 >>>>>>> Stashed changes
