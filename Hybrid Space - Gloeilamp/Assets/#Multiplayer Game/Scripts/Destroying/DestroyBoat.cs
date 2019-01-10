@@ -2,9 +2,9 @@
 [RequireComponent(typeof(BoatEngine))]
 public class DestroyBoat : MonoBehaviour, IDestroyable {
     [SerializeField]
-    private int reducedTime;
+    private float damage;
 
     public void Destroy() {
-        CustomTimer.TotalSeconds -= reducedTime;
+        HealthManager.RemoveHealth(damage);
     }
 }
