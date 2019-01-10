@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: e006be329591a2f418fc5c01c73d6d73
+=======
+guid: becb5abcad09a844495f3a65fc17c0f8
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -30,7 +34,26 @@ ModelImporter:
     4300002: polySurface2
     4300004: polySurface10
     4300006: polySurface7
+<<<<<<< Updated upstream
   externalObjects: {}
+=======
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn1
+    second: {fileID: 2100000, guid: da1c6a2f8eebd114da11e1fd5d856af1, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100004, guid: da1c6a2f8eebd114da11e1fd5d856af1, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100002, guid: da1c6a2f8eebd114da11e1fd5d856af1, type: 3}
+>>>>>>> Stashed changes
   materials:
     importMaterials: 1
     materialName: 0

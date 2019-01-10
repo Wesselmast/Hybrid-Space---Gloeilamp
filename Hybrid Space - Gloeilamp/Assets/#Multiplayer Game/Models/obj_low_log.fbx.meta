@@ -1,37 +1,15 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: ca5b300e2d4f6944aaa813d0eb135a7d
-=======
-guid: da1c6a2f8eebd114da11e1fd5d856af1
->>>>>>> Stashed changes
+guid: 69bbdb519d41f1d46900e12fd57a8da7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: msh_frame
-    100002: msh_gong
-    100004: msh_rope_left
-    100006: msh_rope_right
-    100008: //RootNode
-    400000: msh_frame
-    400002: msh_gong
-    400004: msh_rope_left
-    400006: msh_rope_right
-    400008: //RootNode
-    2100000: blinn1
-    2100002: lambert3
-    2100004: lambert2
-    2300000: msh_frame
-    2300002: msh_gong
-    2300004: msh_rope_left
-    2300006: msh_rope_right
-    3300000: msh_frame
-    3300002: msh_gong
-    3300004: msh_rope_left
-    3300006: msh_rope_right
-    4300000: msh_gong
-    4300002: msh_rope_left
-    4300004: msh_rope_right
-    4300006: msh_frame
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert3
+    2100002: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: msh_log
   externalObjects: {}
   materials:
     importMaterials: 1
