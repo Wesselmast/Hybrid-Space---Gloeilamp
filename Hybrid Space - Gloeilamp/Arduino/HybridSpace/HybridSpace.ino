@@ -1,12 +1,14 @@
 const int pinA = 5;
 const int pinB = 3; 
-const int interval = 42;  
+const int interval = 24;  
 const int minSoftTurn = 2;
 const int minHardTurn = 5;
-int encoderPosCount = 0; 
 long previousMillis;
+int encoderPosCount = 0; 
 int aVal; 
 int pinALast;
+bool isTurning;
+long index = 0;
 
  void setup() {
    pinMode (pinA,INPUT);
@@ -18,27 +20,43 @@ int pinALast;
  void loop() { 
   timer1();
   timer2();
-  //Serial.println(encoderPosCount);
  }
 
  void timer1(){
     aVal = digitalRead(pinA);
-    
+    index++;
     if(aVal != pinALast) {
-      if (digitalRead(pinB) != aVal) { 
-        encoderPosCount ++;
-      } 
-      else {
-        encoderPosCount--;
-      }
+      isTurning = true;
+      if (digitalRead(pinB) != aVal) encoderPosCount ++;
+      else encoderPosCount--;
+    }
+    if(index >= 125000){
+      encoderPosCount = 0;
+      index = 0;
+      isTurning = false;
     }
     pinALast = aVal;
  }
 
  void timer2() {
-     unsigned int currentMillis = millis();
+     unsigned long currentMillis = millis();
 
      if(currentMillis - previousMillis > interval) {
+        if(isTurning && encoderPosCount >= 3) {
+            Serial.flush();
+            Serial.println(1);
+        }
+        else if (isTurning && encoderPosCount <= -3) {
+          Serial.flush();
+          Serial.println(2);
+        }
+        else {
+          Serial.flush();
+          Serial.println(0);
+        }
+
+      
+      /*
         if(encoderPosCount > minSoftTurn && encoderPosCount < minHardTurn) {
            Serial.flush();
            Serial.println(1);
@@ -58,7 +76,7 @@ int pinALast;
         else {
            Serial.flush();
            Serial.println(0);
-        }
+        } */
   
         previousMillis = currentMillis;
      }
