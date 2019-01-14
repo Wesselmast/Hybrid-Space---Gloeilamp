@@ -15,7 +15,7 @@ public class ArduinoCom : MonoBehaviour {
     private int input;
 
 	private void Awake () {
-        string portName = "COM11";
+        string portName = "COM9";
         string[] portNums = System.Text.RegularExpressions.Regex.Split(portName, @"\D+");
         port = (int.Parse(portNums[1]) >= 10) ? new SerialPort("\\\\.\\" + portName, baudRate) :
                                                   new SerialPort(portName, baudRate);

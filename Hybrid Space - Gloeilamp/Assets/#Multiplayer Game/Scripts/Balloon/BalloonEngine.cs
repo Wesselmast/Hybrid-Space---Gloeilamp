@@ -32,18 +32,18 @@ public class BalloonEngine : MonoBehaviour {
     }
 
     private void RotateLeftSoft() {
-        desiredRot -= rotationSpeed * Time.deltaTime;
-    }
-
-    private void RotateRightSoft() {
         desiredRot += rotationSpeed * Time.deltaTime;
     }
 
+    private void RotateRightSoft() {
+        desiredRot -= rotationSpeed * Time.deltaTime;
+    }
+
     private void RotateLeftHard() {
-        desiredRot -= rotationSpeed * Time.deltaTime * hardRotateModifier;
+        desiredRot += rotationSpeed * Time.deltaTime * hardRotateModifier;
     }
 
     private void RotateRightHard() {
-        desiredRot += rotationSpeed * Time.deltaTime * hardRotateModifier;
+        desiredRot -= rotationSpeed * Time.deltaTime * hardRotateModifier;
     }
 }
