@@ -10,23 +10,30 @@ public class ArduinoCom : MonoBehaviour {
     public bool Up { get { return up; } }
     public bool DropItems { get { return dropItems; } }
 
+    private enum Port {
+        COM9,
+        COM11
+    }
+
+    [SerializeField]
+    private Port portName;
+
     private SerialPort port;
     private const int baudRate = 9600;
     private int input;
 
 	private void Awake () {
-        string portName = "COM9";
-        string[] portNums = System.Text.RegularExpressions.Regex.Split(portName, @"\D+");
+        string[] portNums = System.Text.RegularExpressions.Regex.Split(portName.ToString(), @"\D+");
         port = (int.Parse(portNums[1]) >= 10) ? new SerialPort("\\\\.\\" + portName, baudRate) :
-                                                  new SerialPort(portName, baudRate);
+                                                  new SerialPort(portName.ToString(), baudRate);
         port.ReadTimeout = 50;
         try { port.Open(); }
-        catch { gameObject.SetActive(false); Debug.LogWarning("Couldn't open serial port " + portName + "!"); }
+        catch { gameObject.SetActive(false); Debug.LogWarning("Couldn't open serial port " + portName.ToString() + "!"); }
     }
 	
 	private void Update () {
-        port.BaseStream.Flush();
         if(int.TryParse(port.ReadLine(), out input)) {
+            port.BaseStream.Flush();
             if (input == 1) softLeft = true;
             else if (input == 2) softRight = true;
             else if (input == 3) hardLeft = true;

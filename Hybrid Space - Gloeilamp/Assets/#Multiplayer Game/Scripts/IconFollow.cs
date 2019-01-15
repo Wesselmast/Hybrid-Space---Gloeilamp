@@ -9,9 +9,12 @@ public class IconFollow : MonoBehaviour {
     private Transform thisTransform;
     private Camera mapCam;
 
+    private void Awake() {
+        mapCam = GameObject.FindWithTag("MapCamera").GetComponent<Camera>();
+    }
+
     private void Start() {
         thisTransform = transform;
-        mapCam = GameObject.FindWithTag("MapCamera").GetComponent<Camera>();
     }
 
     private void FixedUpdate() {

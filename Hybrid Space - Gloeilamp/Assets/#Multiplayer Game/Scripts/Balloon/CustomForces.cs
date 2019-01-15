@@ -10,14 +10,12 @@ public class CustomForces : MonoBehaviour {
 
     private Rigidbody rb;
 
-    private void Awake() { rb = GetComponent<Rigidbody>(); }
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+    }
 
-    void Update () {
-        if (selfRighting) {
-            rb.AddForceAtPosition(Vector3.down, transform.TransformPoint(Vector3.up * -selfRightingOffset));
-        }
-        if (customGravity) {
-            rb.AddForce(Vector3.down * balloonGravity, ForceMode.Acceleration);
-        }
+    private void Update () {
+        if (selfRighting) rb.AddForceAtPosition(Vector3.down, transform.TransformPoint(Vector3.up * -selfRightingOffset));
+        if (customGravity) rb.AddForce(Vector3.down * balloonGravity, ForceMode.Acceleration);
     }
 }

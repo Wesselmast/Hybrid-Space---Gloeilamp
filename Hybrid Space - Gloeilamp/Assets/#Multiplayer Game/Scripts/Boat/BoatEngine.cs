@@ -24,18 +24,23 @@ public class BoatEngine : MonoBehaviour {
     [SerializeField]
     private Transform mainSail;
 
+    public CircularDrive steeringDrive;
     private float desiredRotY, desiredRotZ;
     private float sailRotY;
-    public CircularDrive steeringDrive;
-    Rigidbody rb;
-    EnableVR checkVR;
+    private bool vrEnabled;
+    private Rigidbody rb;
+    private EnableVR checkVR;
 
-    private void Start() {
+    private void Awake() {
         rb = GetComponent<Rigidbody>();
         checkVR = GetComponent<EnableVR>();
+    }
+
+    private void Start() {
         desiredRotY = transform.eulerAngles.y;
         desiredRotZ = transform.eulerAngles.z;
         sailRotY = mainSail.localEulerAngles.y;
+        vrEnabled = checkVR.enableVR ? true : false;
     }
 
     private void FixedUpdate() {
@@ -54,7 +59,7 @@ public class BoatEngine : MonoBehaviour {
     private void Steering() {
 
         // If enabledVR is not checked
-        if (!checkVR.enableVR) {
+        if (!vrEnabled) {
             float rotation = Input.GetAxis("Horizontal");
             transform.Rotate(0, rotation * steerSpeed, 0);
         } 
