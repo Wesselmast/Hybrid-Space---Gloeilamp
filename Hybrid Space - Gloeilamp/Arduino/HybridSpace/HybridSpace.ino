@@ -3,7 +3,7 @@ const int pinB = 3;
 const int interval = 24;  
 const int minSoftTurn = 2;
 const int minHardTurn = 5;
-long previousMillis;
+unsigned long previousMillis;
 int encoderPosCount = 0; 
 int aVal; 
 int pinALast;
