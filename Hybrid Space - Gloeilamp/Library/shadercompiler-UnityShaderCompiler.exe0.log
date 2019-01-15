@@ -36,6 +36,9 @@ Cmd: preprocess
   insize=4072 outsize=2882 ok=1
 Cmd: preprocess
   insize=7098 outsize=2372 ok=1
+<<<<<<< Updated upstream
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+=======
+>>>>>>> Stashed changes
 Cmd: initializeCompiler
