@@ -27,7 +27,7 @@ public class ArduinoCom : MonoBehaviour {
         string[] portNums = System.Text.RegularExpressions.Regex.Split(portName.ToString(), @"\D+");
         port = (int.Parse(portNums[1]) >= 10) ? new SerialPort("\\\\.\\" + portName, baudRate) :
                                                   new SerialPort(portName.ToString(), baudRate);
-        port.ReadTimeout = 100;
+        port.ReadTimeout = 50;
         try { port.Open(); }
         catch { gameObject.SetActive(false); Debug.LogWarning("Couldn't open serial port " + portName.ToString() + "!"); }
     }

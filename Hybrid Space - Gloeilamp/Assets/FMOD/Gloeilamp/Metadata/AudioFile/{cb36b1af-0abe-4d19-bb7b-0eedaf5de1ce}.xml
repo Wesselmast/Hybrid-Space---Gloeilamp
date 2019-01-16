@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{cb36b1af-0abe-4d19-bb7b-0eedaf5de1ce}">
+        <property name="assetPath">
+            <value>SpeedUP.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2.3365306122448981</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{fdf8be4e-68da-44dc-b402-1c402fc9d416}</destination>
+        </relationship>
+    </object>
+</objects>

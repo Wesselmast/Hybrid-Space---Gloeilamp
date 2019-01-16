@@ -2,7 +2,7 @@ const int pinA = 5;
 const int pinB = 3; 
 const int buttonPin = 8;
 const int infraPin = A0;
-const int interval = 24;  
+const int interval = 42;  
 unsigned long previousMillis;
 float proximity;
 int encoderPosCount = 0; 
@@ -18,7 +18,7 @@ long index = 0;
    pinMode (infraPin,INPUT);
    pinMode (buttonPin, INPUT);
    pinALast = digitalRead(pinA);
-   Serial.begin(9600);
+   Serial.begin(38400);
  } 
 
  void loop() { 
@@ -50,42 +50,46 @@ long index = 0;
 
      if(currentMillis - previousMillis > interval) {
       if(isTurning){
-        if(proximity <= 3) {
+        if(proximity <= 4) {
           Serial.flush();
-          Serial.println(5);
+          Serial.write(5);
         }
         else if (buttonDown) {
           Serial.flush();
-          Serial.println(6);  
+          Serial.write(6);  
         }
         else if(encoderPosCount >= 10) {
           Serial.flush();
-          Serial.println(3);
+          Serial.write(3);
         }
         else if(encoderPosCount <= -10) {
           Serial.flush();
-          Serial.println(4);
+          Serial.write(4);
         }
         else if(encoderPosCount > 0) {
           Serial.flush();
-          Serial.println(1);
+          Serial.write(1);
         }
         else if (encoderPosCount < 0) {
           Serial.flush();
-          Serial.println(2);
-        }
-      }
-       else if(proximity <= 3) {
-          Serial.flush();
-          Serial.println(5);
-        }
-        else if (buttonDown) {
-          Serial.flush();
-          Serial.println(6);  
+          Serial.write(2);
         }
         else {
           Serial.flush();
-          Serial.println(0);
+          Serial.write(0);
+        }
+      }
+       else if(proximity <= 4) {
+          Serial.flush();
+          Serial.write(5);
+        }
+        else if (buttonDown) {
+          Serial.flush();
+          Serial.write(6);  
+        }
+        else {
+          Serial.flush();
+          Serial.write(0);
         }
   
         previousMillis = currentMillis;
