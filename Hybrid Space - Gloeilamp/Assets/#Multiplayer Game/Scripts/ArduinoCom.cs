@@ -11,6 +11,7 @@ public class ArduinoCom : MonoBehaviour {
     public bool DropItems { get { return dropItems; } }
 
     private enum Port {
+        COM3,
         COM9,
         COM11
     }

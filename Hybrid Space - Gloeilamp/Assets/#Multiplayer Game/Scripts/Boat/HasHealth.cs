@@ -5,8 +5,10 @@ public class HasHealth : MonoBehaviour {
     private float health;
     [SerializeField]
     private string sceneToLose;
+    [SerializeField]
+    private WinLosePackage pack;
 
     private void Awake() {
-        HealthManager.InitHealth(health, sceneToLose);
+        HealthManager.InitHealth(health, sceneToLose, pack);
     }
 }
