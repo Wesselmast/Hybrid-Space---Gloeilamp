@@ -21,8 +21,8 @@ public class BoatEngine : MonoBehaviour {
     private bool allowSailRotation = true;
     [SerializeField]
     private float sailRotLimit = 60f;
-    [SerializeField]
-    private Transform mainSail;
+    //[SerializeField]
+    //private Transform mainSail;
 
     public CircularDrive steeringDrive;
     private float desiredRotY, desiredRotZ;
@@ -39,7 +39,7 @@ public class BoatEngine : MonoBehaviour {
     private void Start() {
         desiredRotY = transform.eulerAngles.y;
         desiredRotZ = transform.eulerAngles.z;
-        sailRotY = mainSail.localEulerAngles.y;
+        //sailRotY = mainSail.localEulerAngles.y;
         vrEnabled = checkVR.enableVR ? true : false;
     }
 
@@ -85,7 +85,7 @@ public class BoatEngine : MonoBehaviour {
             sailRotY = Mathf.Clamp(sailRotY, -sailRotLimit, sailRotLimit);
 
             var sailRotQ = Quaternion.Euler(0, sailRotY, 0);
-            mainSail.localRotation = Quaternion.Slerp(mainSail.localRotation, sailRotQ, Time.deltaTime * damping);
+            //mainSail.localRotation = Quaternion.Slerp(mainSail.localRotation, sailRotQ, Time.deltaTime * damping);
         }
     }
 }

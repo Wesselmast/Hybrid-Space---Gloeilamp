@@ -19,21 +19,21 @@ public class ArduinoCom : MonoBehaviour {
     private Port portName;
 
     private SerialPort port;
-    private const int baudRate = 9600;
+    private const int baudRate = 38400;
     private int input;
 
 	private void Awake () {
         string[] portNums = System.Text.RegularExpressions.Regex.Split(portName.ToString(), @"\D+");
         port = (int.Parse(portNums[1]) >= 10) ? new SerialPort("\\\\.\\" + portName, baudRate) :
                                                   new SerialPort(portName.ToString(), baudRate);
-        port.ReadTimeout = 50;
+        port.ReadTimeout = 100;
         try { port.Open(); }
         catch { gameObject.SetActive(false); Debug.LogWarning("Couldn't open serial port " + portName.ToString() + "!"); }
     }
 	
 	private void Update () {
-        if(int.TryParse(port.ReadLine(), out input)) {
-            port.BaseStream.Flush();
+        try {
+            input = port.ReadByte();
             if (input == 1) softLeft = true;
             else if (input == 2) softRight = true;
             else if (input == 3) hardLeft = true;
@@ -49,5 +49,6 @@ public class ArduinoCom : MonoBehaviour {
                 up = false;
             }
         }
+        catch { }
 	}
 }
