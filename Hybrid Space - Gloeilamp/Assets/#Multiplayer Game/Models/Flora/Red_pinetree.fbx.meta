@@ -38,6 +38,7 @@ ModelImporter:
     400030: //RootNode
     400032: Tree_base
     2100000: lambert1
+    2100002: lambert6
     2300000: pSphere1
     2300002: pSphere10
     2300004: pSphere11
@@ -53,6 +54,7 @@ ModelImporter:
     2300024: pSphere8
     2300026: pSphere9
     2300028: Tree_base
+    2300030: //RootNode
     3300000: pSphere1
     3300002: pSphere10
     3300004: pSphere11
@@ -68,6 +70,7 @@ ModelImporter:
     3300024: pSphere8
     3300026: pSphere9
     3300028: Tree_base
+    3300030: //RootNode
     4300000: Tree_base
     4300002: pSphere10
     4300004: pSphere9
@@ -83,6 +86,7 @@ ModelImporter:
     4300024: pSphere12
     4300026: pSphere13
     4300028: pSphere3
+    4300030: Red_pinetree1
   externalObjects: {}
   materials:
     importMaterials: 1
