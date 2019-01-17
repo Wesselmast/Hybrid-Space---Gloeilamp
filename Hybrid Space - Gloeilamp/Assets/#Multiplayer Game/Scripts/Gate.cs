@@ -3,15 +3,11 @@
 public class Gate : MonoBehaviour {
 
     [SerializeField]
-    private Animator anim;
-
-    private void Start() {
-        anim = GetComponent<Animator>();
-    }
+    private Animation openGate;
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Boat") {
-            anim.Play("GateOpen");
+            openGate.Play();
             Destroy(gameObject);
         }
     }

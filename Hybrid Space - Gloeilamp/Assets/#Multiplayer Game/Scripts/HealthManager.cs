@@ -12,8 +12,10 @@ public static class HealthManager {
     }
 
     public static void RemoveHealth(float amt) {
-        if (health >= 0) health -= amt;
-        else Die();
+        if (health > 0) {
+            health -= amt;
+            pack.Hit();
+        } else Die();
     }
 
     public static float GetCurrentHealth() {
@@ -22,12 +24,14 @@ public static class HealthManager {
 
     private static void Die() {
         pack.Lose();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLose);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLose);
     }
 }
 
 [System.Serializable]
 public struct WinLosePackage {
+    [SerializeField]
+    private Animation barrelHitAnim;
     [SerializeField]
     private GameObject loseBoat, victoryBoat, loseBalloon, victoryBalloon;
     [SerializeField]
@@ -38,6 +42,10 @@ public struct WinLosePackage {
     private BalloonEngine balEngine;
     [SerializeField]
     private CustomForces forces;
+
+    public void Hit() {
+        barrelHitAnim.Play();
+    }
 
     public void Lose() {
         loseBoat.SetActive(true);

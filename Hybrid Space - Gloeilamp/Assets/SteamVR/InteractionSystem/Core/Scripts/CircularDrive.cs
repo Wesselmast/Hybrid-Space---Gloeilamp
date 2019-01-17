@@ -24,8 +24,6 @@ namespace Valve.VR.InteractionSystem
 
         public GameObject instructionUI;
 
-        public GameObject steerPos;
-
 		[Tooltip( "The axis around which the circular drive will rotate in local space" )]
 		public Axis_t axisOfRotation = Axis_t.XAxis;
 

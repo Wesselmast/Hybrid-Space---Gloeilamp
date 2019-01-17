@@ -5,7 +5,7 @@ using Valve.VR.InteractionSystem;
 public class BoatEngine : MonoBehaviour {
 
     [Header("Boat Settings")]
-    public float AccelerationSpeed = 1f;
+    public float accelerationSpeed = 1f;
     [SerializeField]
     private float steerSpeed = 2f;
     [SerializeField]
@@ -16,6 +16,8 @@ public class BoatEngine : MonoBehaviour {
     private bool allowTilting = true;
     [SerializeField]
     private float tiltLimit = 10f;
+    [HideInInspector]
+    public bool isSlowed = false;
     [Header("Sail Settings")]
     [SerializeField]
     private bool allowSailRotation = true;
@@ -51,8 +53,7 @@ public class BoatEngine : MonoBehaviour {
 
     // Move forward based on acceleration speed
     private void Movement() {
-        rb.velocity = -transform.forward * AccelerationSpeed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, floatHeight, transform.position.z);
+        rb.velocity = -transform.forward * accelerationSpeed * Time.deltaTime;
     }
 
     // Check in which direction the boat will steer

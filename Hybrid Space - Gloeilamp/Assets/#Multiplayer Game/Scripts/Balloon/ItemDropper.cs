@@ -2,6 +2,8 @@
 
 [RequireComponent(typeof(BalloonInput))]
 public class ItemDropper : MonoBehaviour {
+
+    public Animation barrelReleaseAnim;
     [SerializeField]
     private Rigidbody item;
     [SerializeField]
@@ -21,6 +23,7 @@ public class ItemDropper : MonoBehaviour {
 
     private void Drop() {
         if (dropTimer <= 0) {
+            barrelReleaseAnim.Play();
             InstantiateBarrel();
             dropTimer = startDropTimer;
         }

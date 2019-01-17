@@ -10,10 +10,10 @@ public class SpeedBuff : Buff {
     }
 
     public override void Activate() {
-        engine.AccelerationSpeed += settings.SpeedIncrease;
+        engine.accelerationSpeed += settings.SpeedIncrease;
     }
 
     protected override void End() {
-        engine.AccelerationSpeed -= settings.SpeedIncrease;
+        engine.accelerationSpeed -= settings.SpeedIncrease;
     }
 }
