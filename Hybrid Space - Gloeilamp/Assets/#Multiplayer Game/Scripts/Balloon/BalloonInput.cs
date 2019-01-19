@@ -11,7 +11,6 @@ public class BalloonInput : MonoBehaviour {
     public event Action OnRotateLeftHard = delegate { };
     public event Action OnRotateRightHard = delegate { };
     public event Action OnDrop = delegate { };
-    public event Action OnSwitch = delegate { };
 
     void Update () {
         GoingUp = com.Up || Input.GetKey(KeyCode.Space) ? true : false;

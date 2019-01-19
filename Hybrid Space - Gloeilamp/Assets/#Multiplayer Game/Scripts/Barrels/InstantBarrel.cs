@@ -7,7 +7,7 @@ public class InstantBarrel : IBarrel {
         this.transform = transform;
     }
 
-    public void Tick(Del explode) {
+    public void Tick(Explode explode) {
         bool explosion = false;
         Collider[] cols = Physics.OverlapSphere(transform.position, 1.1f);
         foreach (var col in cols) if (col.gameObject.tag == "Boat") explosion = true;

@@ -6,7 +6,7 @@
         explodeTimer = startTimer;
     }
 
-    public void Tick(Del explode) {
+    public void Tick(Explode explode) {
         if (explodeTimer <= 0 && !hasExploded) {
             explode();
             hasExploded = true;

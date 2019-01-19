@@ -1,5 +1,5 @@
-﻿public delegate void Del();
+﻿public delegate void Explode();
 
 public interface IBarrel {
-    void Tick(Del explode);
+    void Tick(Explode explode);
 }

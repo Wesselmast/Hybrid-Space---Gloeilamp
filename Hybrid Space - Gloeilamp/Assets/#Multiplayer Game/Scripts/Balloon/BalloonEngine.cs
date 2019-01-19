@@ -18,10 +18,10 @@ public class BalloonEngine : MonoBehaviour {
     private float desiredRot;
 
     private void Start () {
-        GetComponent<BalloonInput>().OnRotateLeftSoft += RotateLeftSoft;
-        GetComponent<BalloonInput>().OnRotateRightSoft += RotateRightSoft;
-        GetComponent<BalloonInput>().OnRotateLeftHard += RotateLeftHard;
-        GetComponent<BalloonInput>().OnRotateRightHard += RotateRightHard;
+        GetComponent<BalloonInput>().OnRotateLeftSoft += (()=> Rotate(-1, 1));
+        GetComponent<BalloonInput>().OnRotateRightSoft += (() => Rotate(1, 1));
+        GetComponent<BalloonInput>().OnRotateLeftHard += (() => Rotate(-1, hardRotateModifier));
+        GetComponent<BalloonInput>().OnRotateRightHard += (() => Rotate(1, hardRotateModifier));
         desiredRot = transform.eulerAngles.y;
     }
 
@@ -31,19 +31,7 @@ public class BalloonEngine : MonoBehaviour {
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);
     }
 
-    private void RotateLeftSoft() {
-        desiredRot -= rotationSpeed * Time.deltaTime;
-    }
-
-    private void RotateRightSoft() {
-        desiredRot += rotationSpeed * Time.deltaTime;
-    }
-
-    private void RotateLeftHard() {
-        desiredRot -= rotationSpeed * Time.deltaTime * hardRotateModifier;
-    }
-
-    private void RotateRightHard() {
-        desiredRot += rotationSpeed * Time.deltaTime * hardRotateModifier;
+    private void Rotate(int direction, float hardModifier) {
+        desiredRot += rotationSpeed * direction * Time.deltaTime * hardModifier;
     }
 }

@@ -5,10 +5,10 @@ public class ShieldBuff : Buff {
     private DestroyBoat destroyBoat;
     private GameObject shieldSphere;
 
-    public ShieldBuff(float duration, ScriptableBuff buff, GameObject obj) : base(duration, buff, obj) {
-        destroyBoat = obj.GetComponent<DestroyBoat>();
-        settings = (ScriptableShieldBuff)buff;
-        shieldSphere = obj.transform.GetChild(0).gameObject;
+    public ShieldBuff(BuffContainer container) : base(container) {
+        destroyBoat = container.Obj.GetComponent<DestroyBoat>();
+        settings = (ScriptableShieldBuff)container.Buff;
+        shieldSphere = container.Obj.transform.GetChild(0).gameObject;
     }
 
     public override void Activate() {

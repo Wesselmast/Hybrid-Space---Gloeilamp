@@ -22,7 +22,7 @@ public class CanExplode : MonoBehaviour {
     private FMODCom com;
     private Rigidbody rb;
     private IBarrel barrel;
-    private Del explode;
+    private Explode explode;
 
     private void Awake() {
         com = new FMODCom("BarrelExplosion");

@@ -8,6 +8,6 @@ public class ScriptableBarrageBuff : ScriptableBuff {
     public float Interval { get { return interval; } }
 
     public override Buff InitializeBuff(GameObject obj) {
-        return new BarrageBuff(Duration, this, obj);
+        return new BarrageBuff(new BuffContainer(Duration, this, obj));
     }
 }

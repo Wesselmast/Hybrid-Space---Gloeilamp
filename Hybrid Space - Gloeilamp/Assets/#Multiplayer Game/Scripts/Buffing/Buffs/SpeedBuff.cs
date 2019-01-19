@@ -4,9 +4,9 @@ public class SpeedBuff : Buff {
     private ScriptableSpeedBuff settings;
     private BoatEngine engine;
 
-    public SpeedBuff(float duration, ScriptableBuff buff, GameObject obj) : base(duration, buff, obj) {
-        engine = obj.GetComponent<BoatEngine>();
-        settings = (ScriptableSpeedBuff)buff;
+    public SpeedBuff(BuffContainer container) : base(container) {
+        engine = container.Obj.GetComponent<BoatEngine>();
+        settings = (ScriptableSpeedBuff)container.Buff;
     }
 
     public override void Activate() {

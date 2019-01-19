@@ -6,9 +6,9 @@ public class BarrageBuff : Buff {
     private ItemDropper dropper;
     private Animation barrelReleaseAnim;
 
-    public BarrageBuff(float duration, ScriptableBuff buff, GameObject obj) : base(duration, buff, obj) {
-        dropper = obj.GetComponent<ItemDropper>();
-        settings = (ScriptableBarrageBuff)buff;
+    public BarrageBuff(BuffContainer container) : base(container) {
+        dropper = container.Obj.GetComponent<ItemDropper>();
+        settings = (ScriptableBarrageBuff)container.Buff;
         barrelReleaseAnim = dropper.barrelReleaseAnim;
     }
 
@@ -18,7 +18,7 @@ public class BarrageBuff : Buff {
     }
 
     private IEnumerator BarrelBarrage() {
-        while (duration > 0) {
+        while (container.Duration > 0) {
             dropper.InstantiateBarrel();
             yield return new WaitForSeconds(settings.Interval);
         }
